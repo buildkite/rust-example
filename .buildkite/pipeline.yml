@@ -1,0 +1,25 @@
+steps:
+  - label: ":rust: Lint"
+    key: lint
+    commands:
+      - "rustup component add clippy"
+      - "cargo clippy"
+    plugins:
+      - docker:
+          image: "rust"
+
+  - label: ":rust: Test"
+    key: test
+    command: "cargo test"
+    plugins:
+      - docker:
+          image: "rust"
+
+  - label: ":rust: Build"
+    command: "cargo build --release"
+    depends_on: ["lint", "test"]
+    plugins:
+      - docker:
+          image: "rust"
+    artifact_paths:
+      - "target/release/*"

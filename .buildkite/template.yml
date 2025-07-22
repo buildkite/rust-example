@@ -1,0 +1,8 @@
+name: "Rust Example"
+description: "An example pipeline that builds, lints, and tests a Rust application."
+emoji: ":rust:"
+languages:
+  - rust
+steps:
+  - command: "buildkite-agent pipeline upload"
+    label: ":pipeline:"
